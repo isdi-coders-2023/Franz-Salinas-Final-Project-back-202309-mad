@@ -1,6 +1,13 @@
 import { Footballer } from './footballers';
 
 export type FootballTeam = {
-  name: string;
-  players: Footballer[];
+  teamName: string;
+  footballers: Footballer[];
+  foundation: string;
+  coach: string;
+  styleOfPlay: string;
+  preferFormation: string;
+  defensiveStyle: string;
+  pressingSystem: string;
+  teamShield: string;
 };

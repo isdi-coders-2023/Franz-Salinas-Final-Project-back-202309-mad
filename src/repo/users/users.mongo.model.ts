@@ -9,9 +9,6 @@ const userSchema = new Schema<User>({
   password: {
     type: String,
   },
-  age: {
-    type: String,
-  },
 
   name: {
     type: String,
