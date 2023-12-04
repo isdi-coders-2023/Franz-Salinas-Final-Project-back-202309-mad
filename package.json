@@ -1,7 +1,7 @@
 {
-  "name": "week6.srv.express",
+  "name": "dream-team-app",
   "version": "1.0.0",
-  "description": "202309-w6ch5-franz-salinas-backend",
+  "description": "franz-salinas-final-project-back-202309-mad",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "api": "json-server --watch ./api/db.json"
   },
   "keywords": [],
-  "author": "Fer Franz Salinas",
+  "author": "Franz Salinas",
   "license": "ISC",
   "prettier": {
     "singleQuote": true
