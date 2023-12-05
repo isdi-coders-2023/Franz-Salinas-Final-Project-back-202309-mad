@@ -3,9 +3,9 @@ import { Repository } from '../repo';
 import { LoginUser, User } from '../../entities/users.js';
 import { UserModel } from './users.mongo.model.js';
 import { HttpError } from '../../types/http.error.js';
-import { Auth } from '../../services/auth';
+import { Auth } from '../../services/auth.js';
 
-const debug = createDebug('W7E:users:mongo:repo');
+const debug = createDebug('W9E:users:mongo:repo');
 
 export class UserMongoRepo implements Repository<User> {
   constructor() {

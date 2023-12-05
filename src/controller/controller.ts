@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Repository } from '../repo/repo.js';
 import { MediaFiles } from '../services/media.files.js';
+import { debug } from 'console';
 
 export abstract class Controller<T extends { id: unknown }> {
   cloudinaryService: MediaFiles;
@@ -29,6 +30,7 @@ export abstract class Controller<T extends { id: unknown }> {
 
   async create(req: Request, res: Response, next: NextFunction) {
     try {
+      debug('controller general', req.body);
       const result = await this.repo.create(req.body);
 
       res.status(201);

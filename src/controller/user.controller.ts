@@ -3,11 +3,11 @@ import { NextFunction, Request, Response } from 'express';
 import { UserMongoRepo } from '../repo/users/user.mongo.repo.js';
 import { Auth } from '../services/auth.js';
 import { Controller } from './controller.js';
-import { User } from '../entities/user.js';
+import { User } from '../entities/users.js';
 import { HttpError } from '../types/http.error.js';
 import { LoginResponse } from '../types/login.response.js';
 
-const debug = createDebug('w7E:user:controller');
+const debug = createDebug('W9E:user:controller');
 
 export class UserController extends Controller<User> {
   constructor(protected repo: UserMongoRepo) {
@@ -34,9 +34,9 @@ export class UserController extends Controller<User> {
         : await this.repo.login(req.body);
       const data: LoginResponse = {
         user: result,
-        token: Auth.signJWT({
+        token: Auth.singJWT({
           id: result.id,
-          userName: result.userName,
+          email: result.email,
           role: result.role,
         }),
       };
@@ -52,9 +52,10 @@ export class UserController extends Controller<User> {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       if (!req.file) throw new HttpError(406, 'Not acceptable', 'Invalid File');
-
+      debug('create user controller', req.body.avatar);
       const imgData = await this.cloudinaryService.uploadImage(req.file.path);
-
+      debug('create user controller', req.body.avatar);
+      debug('create user controller', req.file.path);
       req.body.avatar = imgData;
       super.create(req, res, next);
     } catch (error) {
