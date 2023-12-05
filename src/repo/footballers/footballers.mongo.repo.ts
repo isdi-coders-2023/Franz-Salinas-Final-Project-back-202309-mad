@@ -20,10 +20,10 @@ const footballerSchema = new Schema<Footballer>({
     type: String,
     required: false,
   },
-  /* Esperando por comentarios de Nitin o Juan  author: {
+  author: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
-  }, */
+    ref: 'User',
+  },
 
   surname: {
     type: String,

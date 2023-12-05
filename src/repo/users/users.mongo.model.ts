@@ -34,9 +34,19 @@ const userSchema = new Schema<User>({
     type: String,
   },
 
-  footballTeam: {
-    type: Schema.Types.ObjectId,
-    ref: 'FootballTeam',
+  footballers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Footballer',
+    },
+  ],
+  teamName: {
+    type: String,
+    require: false,
+  },
+  styleOfPlay: {
+    type: String,
+    require: false,
   },
 });
 

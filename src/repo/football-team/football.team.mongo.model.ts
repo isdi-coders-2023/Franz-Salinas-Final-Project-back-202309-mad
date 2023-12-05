@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+/* Just in case I need it later import { Schema, model } from 'mongoose';
 
 import { FootballTeam } from '../../entities/football.team';
 
@@ -58,5 +58,6 @@ footballTeamSchema.set('toJSON', {
 export const FootballTeamModel = model<FootballTeam>(
   'FootballTeam',
   footballTeamSchema
-  /*  'footballteams' */
+   'footballteams'
 );
+ */

@@ -1,5 +1,5 @@
 import { ImgData } from '../types/img.data';
-import { FootballTeam } from './football.team';
+import { Footballer } from './footballers';
 
 export type LoginUser = {
   email: string;
@@ -12,5 +12,7 @@ export type User = LoginUser & {
   surname: string;
   avatar: ImgData;
   role: 'Admin' | 'User';
-  footballTeam: FootballTeam;
+  footballers: Footballer[];
+  teamName: string;
+  styleOfPlay: string;
 };

@@ -1,4 +1,4 @@
-import { ImgData } from '../types/img.data';
+/* Just in case I need it later import { ImgData } from '../types/img.data';
 import { Footballer } from './footballers';
 
 export type FootballTeam = {
@@ -12,3 +12,4 @@ export type FootballTeam = {
   pressingSystem: string;
   teamShield: ImgData;
 };
+ */
