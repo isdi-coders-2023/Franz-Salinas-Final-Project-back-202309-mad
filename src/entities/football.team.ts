@@ -1,3 +1,4 @@
+import { ImgData } from '../types/img.data';
 import { Footballer } from './footballers';
 
 export type FootballTeam = {
@@ -9,5 +10,5 @@ export type FootballTeam = {
   preferFormation: string;
   defensiveStyle: string;
   pressingSystem: string;
-  teamShield: string;
+  teamShield: ImgData;
 };

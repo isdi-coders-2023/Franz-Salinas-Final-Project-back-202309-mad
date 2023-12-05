@@ -36,7 +36,7 @@ const userSchema = new Schema<User>({
 
   footballTeam: {
     type: Schema.Types.ObjectId,
-    ref: 'Footballers',
+    ref: 'FootballTeam',
   },
 });
 

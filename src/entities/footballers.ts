@@ -6,7 +6,7 @@ export type Footballer = {
   position: string;
   nationality: string;
   age: string;
-  autor: User;
+  author: User;
   surname: string;
   preferFoot: string;
   pace: string;
