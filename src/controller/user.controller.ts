@@ -29,11 +29,12 @@ export class UserController extends Controller<User> {
 
   async login(req: Request, res: Response, next: NextFunction) {
     try {
-      debug('req.body.userId', req.body.userId);
+      debug('req.body', req.body);
       const result = req.body.userId
         ? await this.repo.getById(req.body.userId)
         : await this.repo.login(req.body);
-      debug('req.body.userId', req.body.userId);
+
+      debug('req.body.userId', result.id);
       const data: LoginResponse = {
         user: result,
         token: Auth.singJWT({
