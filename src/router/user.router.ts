@@ -22,6 +22,6 @@ userRouter.post(
   controller.create.bind(controller)
 );
 
-userRouter.post('/login', controller.login.bind(controller));
+userRouter.patch('/login', controller.login.bind(controller));
 
-userRouter.patch('/update/:id', controller.delete.bind(controller));
+userRouter.delete('/delete/:id', controller.delete.bind(controller));
