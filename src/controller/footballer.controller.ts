@@ -18,7 +18,7 @@ export class FootballerController extends Controller<Footballer> {
 
   async create(req: Request, res: Response, next: NextFunction) {
     try {
-      req.body.autor = { id: req.body.userId };
+      req.body.author = { id: req.body.userId };
       if (!req.file) throw new HttpError(406, 'Not acceptable', 'Invalid File');
       const imgData = await this.cloudinaryService.uploadImage(req.file.path);
       req.body.imageFootballer = imgData;

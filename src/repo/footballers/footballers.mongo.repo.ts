@@ -1,85 +1,88 @@
-import { Schema, model } from 'mongoose';
-import { Footballer } from '../../entities/footballers';
+/* Tem import { Footballer } from '../../entities/footballers.js';
+import { Repository } from '../repo.js';
+import { HttpError } from '../../types/http.error.js';
+import createDebug from 'debug';
+import { FootballerModel } from './footballers.mongo.model.js';
+import { UserMongoRepo } from '../users/user.mongo.repo.js';
 
-const footballerSchema = new Schema<Footballer>({
-  id: {
-    type: String,
-  },
-  name: { type: String, required: false },
+const debug = createDebug('W7E:footballers:mongo:repo');
 
-  position: {
-    type: String,
-    required: false,
-  },
+export class FootballerMongoRepo implements Repository<Footballer> {
+  repoUser: UserMongoRepo; // Para poder hacer el create necesitamos ligar
+  constructor() {
+    this.repoUser = new UserMongoRepo();
+    debug('Instatiated');
+  }
 
-  nationality: {
-    type: String,
-    required: false,
-  },
-  age: {
-    type: String,
-    required: false,
-  },
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
+  async getAll(): Promise<Footballer[]> {
+    const data = await FootballerModel.find()
+      .populate('author', { footballers: 0 })
+      .exec(); //  Si hacemos await FootballersModel.find().populate('autor', {age:0}).exec(); NO nos mostraria el age.
+    return data;
+  }
 
-  surname: {
-    type: String,
-    require: false,
-  },
+  async getById(id: string): Promise<Footballer> {
+    debug(id, 'id value in getById');
+    const result = await FootballerModel.findById(id)
+      .populate('author', { footballers: 0 })
+      .exec();
+    debug('get by id result', result);
+    if (!result) throw new HttpError(404, 'Not Found', 'GetById not possible');
+    return result;
+  }
 
-  preferFoot: {
-    type: String,
-    required: false,
-  },
+  // Adaptar este con el private save (sustituirlo por el fs.writefile)
 
-  pace: {
-    type: String,
-    required: false,
-  },
-  shoot: {
-    type: String,
-    required: false,
-  },
-  passing: {
-    type: String,
-    required: false,
-  },
-  overall: {
-    type: String,
-    required: false,
-  },
-  drible: {
-    type: String,
-    required: false,
-  },
-  defense: {
-    type: String,
-    required: false,
-  },
-  physicality: {
-    type: String,
-    required: false,
-  },
-  briefStory: {
-    type: String,
-    required: false,
-  },
-});
+  async create(newItem: Omit<Footballer, 'id'>): Promise<Footballer> {
+    const userID = newItem.author.id;
+    debug('userID value', newItem);
 
-footballerSchema.set('toJSON', {
-  transform(_document, returnedObject) {
-    returnedObject.id = returnedObject._id;
-    delete returnedObject._id;
-    delete returnedObject.__v;
-    delete returnedObject.passwd;
-  },
-});
+    const user = await this.repoUser.getById(userID);
+    const result: Footballer = await FootballerModel.create({
+      ...newItem,
+      autor: userID,
+    });
+    user.footballers.push(result);
+    await this.repoUser.update(userID, user);
 
-export const FootballerModel = model<Footballer>(
-  'Footballer',
-  footballerSchema,
-  'footballers'
-);
+    return result;
+  }
+
+  async update(
+    id: string,
+    updatedItem: Partial<Footballer>
+  ): Promise<Footballer> {
+    const result = await FootballerModel.findByIdAndUpdate(id, updatedItem, {
+      new: true,
+    })
+      .populate('author', { footballers: 0 })
+      .exec();
+    if (!result) throw new HttpError(404, 'Not Found', 'Update not possible');
+    return result;
+  }
+
+  async delete(id: string): Promise<void> {
+    const newfootballers = await FootballerModel.findByIdAndDelete(id).exec();
+
+    if (!newfootballers) {
+      throw new HttpError(404, 'Not found', 'It is not possible to delete');
+    }
+  }
+
+  async search({
+    key,
+    value,
+  }: {
+    key: keyof Footballer;
+    value: any;
+  }): Promise<Footballer[]> {
+    const result = await FootballerModel.find({ [key]: value })
+      .populate('author', {
+        notes: 0,
+      })
+      .exec();
+
+    return result;
+  }
+}
+ */

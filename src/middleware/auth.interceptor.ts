@@ -2,6 +2,8 @@ import createDebug from 'debug';
 import { NextFunction, Request, Response } from 'express';
 import { HttpError } from '../types/http.error.js';
 import { Auth } from '../services/auth.js';
+/* Tem import { FootballerMongoRepo } from '../repo/footballers/footballers.mongo.repo.js'; */
+
 /* Y.M import { FootballersMongoRepo } from '../repo/footballers/footballers.mongo.repo.js'; */
 
 const debug = createDebug('W9E:auth:interceptor');
@@ -20,6 +22,7 @@ export class AuthInterceptor {
 
       const tokenPayload = Auth.verifyAndGetPayload(token);
       req.body.userId = tokenPayload.id;
+      debug('req.body.userId', req.body.userId);
       req.body.roleOfTheUser = tokenPayload.role;
       next();
     } catch (error) {
@@ -27,7 +30,7 @@ export class AuthInterceptor {
     }
   }
 
-  /* Tem   async authentificationFootballers(
+  /*  Tem async authentificationFootballers(
     req: Request,
     res: Response,
     next: NextFunction
@@ -36,9 +39,9 @@ export class AuthInterceptor {
       // eslint-disable-next-line prefer-destructuring
       const userId = req.body.userId;
       const footballersId = req.params.id;
-      const repo = new FootballersMongoRepo();
+      const repo = new FootballerMongoRepo();
       const footballers = await repo.getById(footballersId);
-      if (footballers.autor.id !== userId)
+      if (footballers.author.id !== userId)
         throw new HttpError(401, 'Unauthorized', 'User not valid');
       next();
     } catch (error) {

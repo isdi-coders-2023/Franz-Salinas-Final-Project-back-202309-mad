@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import { hash } from 'bcrypt';
+import { hash, compare } from 'bcrypt';
 import { TokenPayload } from '../types/token.payload';
 import { HttpError } from '../types/http.error.js';
 
@@ -13,7 +13,7 @@ export abstract class Auth {
   }
 
   static compare(value: string, hash: string): Promise<boolean> {
-    return this.compare(value, hash);
+    return compare(value, hash);
   }
 
   static singJWT(payload: TokenPayload) {

@@ -16,7 +16,7 @@ export class UserController extends Controller<User> {
     debug('Instatiated');
   }
 
-  async loginWithToken(req: Request, res: Response, next: NextFunction) {
+  /* Tem async loginWithToken(req: Request, res: Response, next: NextFunction) {
     try {
       const result = this.repo.getById(req.body.userId);
       res.json(result);
@@ -25,13 +25,15 @@ export class UserController extends Controller<User> {
     } catch (error) {
       next(error);
     }
-  }
+  } */
 
   async login(req: Request, res: Response, next: NextFunction) {
     try {
+      debug('req.body.userId', req.body.userId);
       const result = req.body.userId
         ? await this.repo.getById(req.body.userId)
         : await this.repo.login(req.body);
+      debug('req.body.userId', req.body.userId);
       const data: LoginResponse = {
         user: result,
         token: Auth.singJWT({

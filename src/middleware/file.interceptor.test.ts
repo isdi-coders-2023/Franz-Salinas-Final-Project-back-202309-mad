@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { FileInterceptor } from './file.interceptor';
+import { FileInterceptor } from './file.interceptor.js';
 import multer from 'multer';
 
 jest.mock('multer');
