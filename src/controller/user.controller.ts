@@ -29,7 +29,7 @@ export class UserController extends Controller<User> {
 
   async login(req: Request, res: Response, next: NextFunction) {
     try {
-      debug('req.body', req.body.userId);
+      debug('req.body', req.body.email);
       const result = req.body.userId
         ? await this.repo.getById(req.body.userId)
         : await this.repo.login(req.body);

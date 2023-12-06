@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-
+import 'dotenv/config';
 import { hash, compare } from 'bcrypt';
 import { TokenPayload } from '../types/token.payload';
 import { HttpError } from '../types/http.error.js';
