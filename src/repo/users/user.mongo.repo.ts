@@ -1,7 +1,7 @@
 import createDebug from 'debug';
 import { Repository } from '../repo';
 import { LoginUser, User } from '../../entities/users.js';
-import { UserModel } from './users.mongo.model.js';
+import { UserModel } from './user.mongo.model.js';
 import { HttpError } from '../../types/http.error.js';
 import { Auth } from '../../services/auth.js';
 
