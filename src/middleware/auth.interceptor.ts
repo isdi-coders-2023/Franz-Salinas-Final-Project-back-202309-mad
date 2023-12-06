@@ -22,7 +22,7 @@ export class AuthInterceptor {
 
       const tokenPayload = Auth.verifyAndGetPayload(token);
       req.body.userId = tokenPayload.id;
-      debug('req.body.userId', req.body.userId);
+
       req.body.roleOfTheUser = tokenPayload.role;
       next();
     } catch (error) {
