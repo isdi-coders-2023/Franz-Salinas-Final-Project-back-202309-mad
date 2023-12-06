@@ -3,7 +3,7 @@ import { Auth } from '../../services/auth.js';
 import { LoginUser, User } from '../../entities/users.js';
 import { UserModel } from './user.mongo.model.js';
 
-jest.mock('./users.mongo.model.js');
+jest.mock('./user.mongo.model.js');
 jest.mock('../../services/auth.js');
 
 describe('GivenUserMongoRepo', () => {
