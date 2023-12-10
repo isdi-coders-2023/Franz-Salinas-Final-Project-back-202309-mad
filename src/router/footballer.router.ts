@@ -39,5 +39,5 @@ footballersRouter.delete(
   interceptor.authorization.bind(interceptor),
   interceptor.adminValidationForRoleOfTheUser.bind(interceptor),
 
-  controller.create.bind(controller)
+  controller.delete.bind(controller)
 );
