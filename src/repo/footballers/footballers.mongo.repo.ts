@@ -22,11 +22,10 @@ export class FootballersMongoRepo implements Repository<Footballer> {
   }
 
   async getById(id: string): Promise<Footballer> {
-    debug(id, 'id value in getById');
     const result = await FootballerModel.findById(id)
       .populate('author', { footballers: 0 })
       .exec();
-    debug('get by id result', result);
+
     if (!result) throw new HttpError(404, 'Not Found', 'GetById not possible');
     return result;
   }
