@@ -68,4 +68,20 @@ export class FootballersMongoRepo implements Repository<Footballer> {
       throw new HttpError(404, 'Not found', 'It is not possible to delete');
     }
   }
+
+  async search({
+    key,
+    value,
+  }: {
+    key: keyof Footballer;
+    value: unknown;
+  }): Promise<Footballer[]> {
+    const result = await FootballerModel.find({ [key]: value })
+      .populate('author', {
+        footballers: 0,
+      })
+      .exec();
+
+    return result;
+  }
 }

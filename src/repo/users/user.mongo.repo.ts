@@ -56,7 +56,7 @@ export class UserMongoRepo implements Repository<User> {
     }
   }
 
-  /* Just in case I need it  async search({
+  async search({
     key,
     value,
   }: {
@@ -70,5 +70,5 @@ export class UserMongoRepo implements Repository<User> {
       .exec();
 
     return result;
-  } */
+  }
 }

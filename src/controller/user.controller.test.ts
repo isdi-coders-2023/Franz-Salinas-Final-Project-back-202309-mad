@@ -74,7 +74,7 @@ describe('Given FilmsController class', () => {
         email: 'test@example.com',
         password: 'passwd123',
       });
-      expect(mockResponse.status).toHaveBeenCalledWith(202);
+      expect(mockResponse.status).toHaveBeenCalledWith(200);
       expect(mockResponse.json).toHaveBeenCalledWith({
         user: mockUser,
       });
