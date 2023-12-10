@@ -44,8 +44,8 @@ export class UserController extends Controller<User> {
         }),
       };
 
-      res.status(202);
-      res.statusMessage = 'Accepted';
+      res.status(200);
+      res.statusMessage = 'Ok';
       res.json(data);
     } catch (error) {
       next(error);

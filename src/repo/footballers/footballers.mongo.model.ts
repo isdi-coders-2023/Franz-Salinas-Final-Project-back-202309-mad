@@ -25,6 +25,14 @@ const footballerSchema = new Schema<Footballer>({
     ref: 'User',
   },
 
+  imageFootballer: {
+    publicId: String,
+    size: Number,
+    format: String,
+    url: String,
+    height: Number,
+    width: Number,
+  },
   surname: {
     type: String,
     require: false,
