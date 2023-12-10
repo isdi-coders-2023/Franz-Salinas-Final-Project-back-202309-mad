@@ -26,11 +26,11 @@ userRouter.post(
 
 userRouter.post('/login', controller.login.bind(controller));
 
-userRouter.post(
+userRouter.patch(
   '/login',
   interceptor.authorization.bind(interceptor),
 
-  controller.loginWithToken.bind(controller)
+  controller.login.bind(controller)
 );
 
 userRouter.delete('/delete/:id', controller.delete.bind(controller));

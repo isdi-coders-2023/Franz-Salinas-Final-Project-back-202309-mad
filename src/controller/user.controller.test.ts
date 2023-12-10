@@ -5,7 +5,7 @@ import { User } from '../entities/users';
 
 jest.mock('../services/auth');
 
-describe('Given FilmsController class', () => {
+describe('Given UserController class', () => {
   let controller: UserController;
   let mockRequest: Request;
   let mockResponse: Response;

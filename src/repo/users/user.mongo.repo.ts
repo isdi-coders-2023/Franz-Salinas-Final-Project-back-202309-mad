@@ -55,7 +55,7 @@ export class UserMongoRepo implements Repository<User> {
       throw new HttpError(404, 'Not Found', 'Delete not possible');
     }
   }
-
+  /* Tem
   async search({
     key,
     value,
@@ -70,5 +70,5 @@ export class UserMongoRepo implements Repository<User> {
       .exec();
 
     return result;
-  }
+  } */
 }

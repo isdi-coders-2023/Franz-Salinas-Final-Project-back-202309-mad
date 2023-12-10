@@ -55,10 +55,9 @@ export class UserController extends Controller<User> {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       if (!req.file) throw new HttpError(406, 'Not acceptable', 'Invalid File');
-      debug('create user controller', req.body.avatar);
+
       const imgData = await this.cloudinaryService.uploadImage(req.file.path);
-      debug('create user controller', req.body.avatar);
-      debug('create user controller', req.file.path);
+
       req.body.avatar = imgData;
       super.create(req, res, next);
     } catch (error) {
