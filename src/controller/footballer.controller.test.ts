@@ -3,12 +3,11 @@ import { FootballerController } from './footballer.controller';
 import { FootballersMongoRepo } from '../repo/footballers/footballers.mongo.repo';
 
 describe('Given FootballerController Class...', () => {
-  // eslint-disable-next-line no-unused-vars
   let controller: FootballerController;
-  // eslint-disable-next-line no-unused-vars
+
   let mockRequest: Request;
   let mockResponse: Response;
-  // eslint-disable-next-line no-unused-vars
+
   let mockNext: NextFunction;
   let mockRepo: jest.Mocked<FootballersMongoRepo>;
 
@@ -64,6 +63,23 @@ describe('Given FootballerController Class...', () => {
         mockRequest.file?.path
       );
       expect(mockRequest.body.imageFootballer).toBe(mockImageData);
+    });
+  });
+
+  describe('When we instantiate it with errors', () => {
+    let mockError: Error;
+    beforeEach(() => {
+      mockError = new Error('Invalid File');
+      const mockRepo = {
+        create: jest.fn().mockRejectedValue(mockError),
+      } as unknown as FootballersMongoRepo;
+
+      controller = new FootballerController(mockRepo);
+    });
+
+    test('Then create should throw an error', async () => {
+      await controller.create(mockRequest, mockResponse, mockNext);
+      expect(mockNext).toHaveBeenCalledWith(mockError);
     });
   });
 });
