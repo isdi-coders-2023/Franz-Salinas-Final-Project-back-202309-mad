@@ -74,7 +74,7 @@ export class FootballersMongoRepo implements Repository<Footballer> {
 
     await FootballerModel.findByIdAndDelete(id).exec();
   }
- */
+  */
   async delete(id: string): Promise<void> {
     const footballer = (await FootballerModel.findByIdAndDelete(
       id
