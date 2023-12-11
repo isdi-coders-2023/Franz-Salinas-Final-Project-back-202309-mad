@@ -5,6 +5,8 @@ import createDebug from 'debug';
 import { FootballerModel } from './footballers.mongo.model.js';
 import { UserMongoRepo } from '../users/user.mongo.repo.js';
 
+import { UserModel } from '../users/user.mongo.model.js';
+
 const debug = createDebug('W7E:footballers:mongo:repo');
 
 export class FootballersMongoRepo implements Repository<Footballer> {
@@ -61,11 +63,16 @@ export class FootballersMongoRepo implements Repository<Footballer> {
   }
 
   async delete(id: string): Promise<void> {
-    const newfootballers = await FootballerModel.findByIdAndDelete(id).exec();
-
-    if (!newfootballers) {
-      throw new HttpError(404, 'Not found', 'It is not possible to delete');
+    const result = await FootballerModel.findById(id).exec();
+    if (!result) {
+      throw new HttpError(404, 'Not Found', 'Delete not possible');
     }
+
+    await UserModel.findByIdAndUpdate(result.author, {
+      $pull: { footballers: id },
+    }).exec();
+
+    await FootballerModel.findByIdAndDelete(id).exec();
   }
 
   /* Tem async search({
