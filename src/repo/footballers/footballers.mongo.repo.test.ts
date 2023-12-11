@@ -1,8 +1,9 @@
-import { Footballer } from '../../entities/footballers';
+import { Footballer } from '../../entities/footballers.js';
+import { UserModel } from '../users/user.mongo.model.js';
 
-import { UserMongoRepo } from '../users/user.mongo.repo';
-import { FootballerModel } from './footballers.mongo.model';
-import { FootballersMongoRepo } from './footballers.mongo.repo';
+import { UserMongoRepo } from '../users/user.mongo.repo.js';
+import { FootballerModel } from './footballers.mongo.model.js';
+import { FootballersMongoRepo } from './footballers.mongo.repo.js';
 
 jest.mock('./footballers.mongo.model.js');
 jest.mock('../users/user.mongo.model.js');
@@ -68,25 +69,34 @@ describe('Given FootballersMongoRepo...', () => {
       expect(exec).toHaveBeenCalled();
       expect(result).toBe('Test');
     });
+
+    test('should delete the footballer and remove it from the author footballers array', async () => {
+      const id = 'testId';
+
+      const exec = jest.fn().mockResolvedValue({});
+      FootballerModel.findByIdAndDelete = jest.fn().mockReturnValue({
+        exec,
+      });
+
+      UserModel.findByIdAndUpdate = jest.fn().mockReturnValue({
+        exec,
+      });
+      await repo.delete(id);
+
+      expect(FootballerModel.findByIdAndDelete).toHaveBeenCalledWith(id);
+      expect(UserModel.findByIdAndUpdate).toHaveBeenCalled();
+    });
   });
 
   describe('When we instantiate it with erros', () => {
     const exec = jest.fn().mockResolvedValue(null);
 
     beforeEach(() => {
-      FootballerModel.find = jest.fn().mockReturnValue({
-        populate: jest.fn().mockReturnValue({
-          exec,
-        }),
-      });
-
       FootballerModel.findById = jest.fn().mockReturnValue({
         populate: jest.fn().mockReturnValue({
           exec,
         }),
       });
-
-      FootballerModel.create = jest.fn().mockReturnValue('Test');
 
       FootballerModel.findByIdAndUpdate = jest.fn().mockReturnValue({
         populate: jest.fn().mockReturnValue({

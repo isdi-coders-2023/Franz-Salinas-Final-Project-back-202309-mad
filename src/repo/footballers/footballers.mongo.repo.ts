@@ -62,7 +62,7 @@ export class FootballersMongoRepo implements Repository<Footballer> {
     return result;
   }
 
-  async delete(id: string): Promise<void> {
+  /* Te async delete(id: string): Promise<void> {
     const result = await FootballerModel.findById(id).exec();
     if (!result) {
       throw new HttpError(404, 'Not Found', 'Delete not possible');
@@ -73,6 +73,19 @@ export class FootballersMongoRepo implements Repository<Footballer> {
     }).exec();
 
     await FootballerModel.findByIdAndDelete(id).exec();
+  }
+ */
+  async delete(id: string): Promise<void> {
+    const footballer = (await FootballerModel.findByIdAndDelete(
+      id
+    ).exec()) as unknown as Footballer;
+    if (!footballer) {
+      throw new HttpError(404, 'Not Found', 'Delete not possible');
+    }
+
+    await UserModel.findByIdAndUpdate(footballer.author, {
+      $pull: { skins: id },
+    }).exec();
   }
 
   /* Tem async search({
