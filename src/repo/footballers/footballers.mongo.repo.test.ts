@@ -18,18 +18,20 @@ describe('Given FootballersMongoRepo...', () => {
         }),
       });
 
-      FootballerModel.findById = jest.fn().mockRejectedValue({
-        exec,
-      });
-
-      FootballerModel.create = jest.fn().mockReturnValue('Test');
-
-      FootballerModel.findByIdAndUpdate = jest.fn().mockRejectedValue({
+      FootballerModel.findById = jest.fn().mockReturnValue({
         populate: jest.fn().mockReturnValue({
           exec,
         }),
       });
-      FootballerModel.findByIdAndDelete = jest.fn().mockRejectedValue({
+
+      FootballerModel.create = jest.fn().mockReturnValue('Test');
+
+      FootballerModel.findByIdAndUpdate = jest.fn().mockReturnValue({
+        populate: jest.fn().mockReturnValue({
+          exec,
+        }),
+      });
+      FootballerModel.findByIdAndDelete = jest.fn().mockReturnValue({
         exec,
       });
       repo = new FootballersMongoRepo();
@@ -50,6 +52,18 @@ describe('Given FootballersMongoRepo...', () => {
         Footballer,
         'id'
       >);
+      expect(result).toBe('Test');
+    });
+
+    test('Then it should execute update...', async () => {
+      const result = await repo.update('', { position: 'Delantero' });
+      expect(exec).toHaveBeenCalled();
+      expect(result).toBe('Test');
+    });
+
+    test('Then it should execute getById...', async () => {
+      const result = await repo.getById('');
+      expect(exec).toHaveBeenCalled();
       expect(result).toBe('Test');
     });
   });
