@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import createDebug from 'debug';
 import { userRouter } from './router/user.router.js';
 import { errorMiddleware } from './middleware/error.middleware.js';
+import { footballersRouter } from './router/footballer.router.js';
 
 /* Tem import { errorMiddleware } from './middleware/error.middleware.js';  */
 
@@ -20,5 +21,6 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.use('/users', userRouter);
+app.use('/footballers', footballersRouter);
 
 app.use(errorMiddleware);

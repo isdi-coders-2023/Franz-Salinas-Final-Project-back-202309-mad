@@ -1,3 +1,4 @@
+import { ImgData } from '../types/img.data';
 import { User } from './users';
 
 export type Footballer = {
@@ -17,4 +18,5 @@ export type Footballer = {
   defense: string;
   physicality: string;
   briefStory: string;
+  imageFootballer: ImgData;
 };

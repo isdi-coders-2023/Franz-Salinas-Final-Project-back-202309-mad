@@ -10,5 +10,7 @@ export default {
     'src/app.ts',
     'src/index.ts',
     'src/router/user.router.ts',
+    'src/router/footballer.router.ts',
+    'src/controller/controller.ts',
   ],
 };

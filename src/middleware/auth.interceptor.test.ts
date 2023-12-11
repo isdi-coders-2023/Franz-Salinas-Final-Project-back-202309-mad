@@ -1,4 +1,4 @@
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './auth.interceptor.js';
 import { NextFunction, Request, Response } from 'express';
 import { Auth } from '../services/auth.js';
 import { HttpError } from '../types/http.error';

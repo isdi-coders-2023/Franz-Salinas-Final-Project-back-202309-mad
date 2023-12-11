@@ -5,7 +5,7 @@ import { User } from '../entities/users';
 
 jest.mock('../services/auth');
 
-describe('Given FilmsController class', () => {
+describe('Given UserController class', () => {
   let controller: UserController;
   let mockRequest: Request;
   let mockResponse: Response;
@@ -74,7 +74,7 @@ describe('Given FilmsController class', () => {
         email: 'test@example.com',
         password: 'passwd123',
       });
-      expect(mockResponse.status).toHaveBeenCalledWith(202);
+      expect(mockResponse.status).toHaveBeenCalledWith(200);
       expect(mockResponse.json).toHaveBeenCalledWith({
         user: mockUser,
       });

@@ -59,7 +59,7 @@ export abstract class Controller<T extends { id: unknown }> {
     }
   }
 
-  /* Just in case I need it async search(req: Request, res: Response, next: NextFunction) {
+  /*  Tem async search(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await this.repo.search({
         key: Object.entries(req.query)[0][0] as keyof T,

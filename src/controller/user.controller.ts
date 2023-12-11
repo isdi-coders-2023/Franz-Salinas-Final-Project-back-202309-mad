@@ -16,7 +16,7 @@ export class UserController extends Controller<User> {
     debug('Instatiated');
   }
 
-  /* Tem async loginWithToken(req: Request, res: Response, next: NextFunction) {
+  loginWithToken(req: Request, res: Response, next: NextFunction) {
     try {
       const result = this.repo.getById(req.body.userId);
       res.json(result);
@@ -25,7 +25,7 @@ export class UserController extends Controller<User> {
     } catch (error) {
       next(error);
     }
-  } */
+  }
 
   async login(req: Request, res: Response, next: NextFunction) {
     try {
@@ -44,8 +44,8 @@ export class UserController extends Controller<User> {
         }),
       };
 
-      res.status(202);
-      res.statusMessage = 'Accepted';
+      res.status(200);
+      res.statusMessage = 'Ok';
       res.json(data);
     } catch (error) {
       next(error);
@@ -55,10 +55,9 @@ export class UserController extends Controller<User> {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       if (!req.file) throw new HttpError(406, 'Not acceptable', 'Invalid File');
-      debug('create user controller', req.body.avatar);
+
       const imgData = await this.cloudinaryService.uploadImage(req.file.path);
-      debug('create user controller', req.body.avatar);
-      debug('create user controller', req.file.path);
+
       req.body.avatar = imgData;
       super.create(req, res, next);
     } catch (error) {

@@ -55,8 +55,8 @@ export class UserMongoRepo implements Repository<User> {
       throw new HttpError(404, 'Not Found', 'Delete not possible');
     }
   }
-
-  /* Just in case I need it  async search({
+  /* Tem
+  async search({
     key,
     value,
   }: {
