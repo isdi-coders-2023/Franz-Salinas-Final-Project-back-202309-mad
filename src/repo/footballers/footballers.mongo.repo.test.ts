@@ -67,4 +67,36 @@ describe('Given FootballersMongoRepo...', () => {
       expect(result).toBe('Test');
     });
   });
+
+  describe('When we instantiate it with erros', () => {
+    const exec = jest.fn().mockResolvedValue(null);
+
+    beforeEach(() => {
+      FootballerModel.find = jest.fn().mockRejectedValue({
+        populate: jest.fn().mockReturnValue({
+          exec,
+        }),
+      });
+
+      FootballerModel.findById = jest.fn().mockRejectedValue({
+        populate: jest.fn().mockReturnValue({
+          exec,
+        }),
+      });
+
+      FootballerModel.create = jest.fn().mockRejectedValue('Test');
+
+      FootballerModel.findByIdAndUpdate = jest.fn().mockRejectedValue({
+        populate: jest.fn().mockReturnValue({
+          exec,
+        }),
+      });
+      FootballerModel.findByIdAndDelete = jest.fn().mockRejectedValue({
+        exec,
+      });
+      repo = new FootballersMongoRepo();
+    });
+
+    test('Then it should be...', () => {});
+  });
 });
