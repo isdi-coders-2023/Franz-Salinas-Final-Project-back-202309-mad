@@ -1,9 +1,11 @@
 import { Footballer } from '../../entities/footballers';
+
 import { UserMongoRepo } from '../users/user.mongo.repo';
 import { FootballerModel } from './footballers.mongo.model';
 import { FootballersMongoRepo } from './footballers.mongo.repo';
 
 jest.mock('./footballers.mongo.model.js');
+jest.mock('../users/user.mongo.model.js');
 
 describe('Given FootballersMongoRepo...', () => {
   let repo: FootballersMongoRepo;
@@ -72,31 +74,37 @@ describe('Given FootballersMongoRepo...', () => {
     const exec = jest.fn().mockResolvedValue(null);
 
     beforeEach(() => {
-      FootballerModel.find = jest.fn().mockRejectedValue({
+      FootballerModel.find = jest.fn().mockReturnValue({
         populate: jest.fn().mockReturnValue({
           exec,
         }),
       });
 
-      FootballerModel.findById = jest.fn().mockRejectedValue({
+      FootballerModel.findById = jest.fn().mockReturnValue({
         populate: jest.fn().mockReturnValue({
           exec,
         }),
       });
 
-      FootballerModel.create = jest.fn().mockRejectedValue('Test');
+      FootballerModel.create = jest.fn().mockReturnValue('Test');
 
-      FootballerModel.findByIdAndUpdate = jest.fn().mockRejectedValue({
+      FootballerModel.findByIdAndUpdate = jest.fn().mockReturnValue({
         populate: jest.fn().mockReturnValue({
           exec,
         }),
       });
-      FootballerModel.findByIdAndDelete = jest.fn().mockRejectedValue({
+      FootballerModel.findByIdAndDelete = jest.fn().mockReturnValue({
         exec,
       });
       repo = new FootballersMongoRepo();
     });
 
-    test('Then it should be...', () => {});
+    test('Then it should execute getById with and erros...', async () => {
+      expect(repo.getById('')).rejects.toThrow();
+    });
+
+    test('Then it should execute updater with and erros...', async () => {
+      expect(repo.update('', { name: 'luis' })).rejects.toThrow();
+    });
   });
 });
