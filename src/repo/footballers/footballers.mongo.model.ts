@@ -75,6 +75,37 @@ const footballerSchema = new Schema<Footballer>({
     type: String,
     required: false,
   },
+
+  teamShieldFlag: {
+    publicId: String,
+    size: Number,
+    format: String,
+    url: String,
+    height: Number,
+    width: Number,
+  },
+
+  countryFlag: {
+    publicId: String,
+    size: Number,
+    format: String,
+    url: String,
+    height: Number,
+    width: Number,
+  },
+  detailsImage: {
+    publicId: String,
+    size: Number,
+    format: String,
+    url: String,
+    height: Number,
+    width: Number,
+  },
+
+  currentTeam: {
+    type: String,
+    required: false,
+  },
 });
 
 footballerSchema.set('toJSON', {

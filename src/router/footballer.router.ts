@@ -23,7 +23,7 @@ footballersRouter.post(
   '/',
   interceptor.authorization.bind(interceptor),
   interceptor.adminValidationForRoleOfTheUser.bind(interceptor),
-  fileInterceptor.singleFileStore('imageFootballer').bind(fileInterceptor),
+  fileInterceptor.multiFileStore().bind(fileInterceptor),
   controller.create.bind(controller)
 );
 footballersRouter.patch(
