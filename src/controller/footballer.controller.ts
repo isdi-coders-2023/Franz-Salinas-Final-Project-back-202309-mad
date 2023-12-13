@@ -28,19 +28,22 @@ export class FootballerController extends Controller<Footballer> {
       const files = req.files as { [fieldname: string]: Express.Multer.File[] };
 
       const image = await this.cloudinaryService.uploadImage(
-        // eslint-disable-next-line dot-notation
         files['imageFootballer'][0].path
       );
-      const collectionsImage = await this.cloudinaryService.uploadImage(
+      const teamShieldFlag = await this.cloudinaryService.uploadImage(
         files['teamShieldFlag'][0].path
       );
-      const caseImage = await this.cloudinaryService.uploadImage(
+      const countryFlag = await this.cloudinaryService.uploadImage(
         files['countryFlag'][0].path
+      );
+      const detailsImage = await this.cloudinaryService.uploadImage(
+        files['detailsImage'][0].path
       );
 
       req.body.imageFootballer = image;
-      req.body.teamShieldFlag = collectionsImage;
-      req.body.countryFlag = caseImage;
+      req.body.teamShieldFlag = teamShieldFlag;
+      req.body.countryFlag = countryFlag;
+      req.body.detailsImage = detailsImage;
 
       super.create(req, res, next);
     } catch (error) {
