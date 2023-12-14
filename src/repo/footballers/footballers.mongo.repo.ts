@@ -84,7 +84,7 @@ export class FootballersMongoRepo implements Repository<Footballer> {
     }
 
     await UserModel.findByIdAndUpdate(footballer.author, {
-      $pull: { skins: id },
+      $pull: { footballers: id },
     }).exec();
   }
 

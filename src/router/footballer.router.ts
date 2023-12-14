@@ -30,7 +30,7 @@ footballersRouter.patch(
   '/:id',
   interceptor.authorization.bind(interceptor),
   interceptor.adminValidationForRoleOfTheUser.bind(interceptor),
-  fileInterceptor.singleFileStore('imageFootballer').bind(fileInterceptor),
+  fileInterceptor.multiFileStore().bind(fileInterceptor),
 
   controller.update.bind(controller)
 );
