@@ -42,4 +42,4 @@ footballersRouter.delete(
   controller.delete.bind(controller)
 );
 
-/* Tem footballersRouter.get('/search', controller.search.bind(controller)); */
+/* Te footballersRouter.get('/search', controller.search.bind(controller)); */
