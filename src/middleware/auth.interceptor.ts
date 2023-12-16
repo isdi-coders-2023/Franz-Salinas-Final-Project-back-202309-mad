@@ -2,6 +2,7 @@ import createDebug from 'debug';
 import { NextFunction, Request, Response } from 'express';
 import { HttpError } from '../types/http.error.js';
 import { Auth } from '../services/auth.js';
+import { FootballersMongoRepo } from '../repo/footballers/footballers.mongo.repo.js';
 /* Tem import { FootballerMongoRepo } from '../repo/footballers/footballers.mongo.repo.js'; */
 
 /* Y.M import { FootballersMongoRepo } from '../repo/footballers/footballers.mongo.repo.js'; */
@@ -30,7 +31,7 @@ export class AuthInterceptor {
     }
   }
 
-  /*  Tem async authentificationFootballers(
+  async authentificationFootballers(
     req: Request,
     res: Response,
     next: NextFunction
@@ -39,7 +40,7 @@ export class AuthInterceptor {
       // eslint-disable-next-line prefer-destructuring
       const userId = req.body.userId;
       const footballersId = req.params.id;
-      const repo = new FootballerMongoRepo();
+      const repo = new FootballersMongoRepo();
       const footballers = await repo.getById(footballersId);
       if (footballers.author.id !== userId)
         throw new HttpError(401, 'Unauthorized', 'User not valid');
@@ -47,9 +48,9 @@ export class AuthInterceptor {
     } catch (error) {
       next(error);
     }
-  } */
+  }
 
-  async adminValidationForRoleOfTheUser(
+  /* Tem async adminValidationForRoleOfTheUser(
     req: Request,
     res: Response,
     next: NextFunction
@@ -61,5 +62,5 @@ export class AuthInterceptor {
     } catch (error) {
       next(error);
     }
-  }
+  } */
 }

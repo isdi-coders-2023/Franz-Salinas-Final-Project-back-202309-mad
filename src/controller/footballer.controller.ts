@@ -61,7 +61,7 @@ export class FootballerController extends Controller<Footballer> {
       const existingTeamShield = existingItem!.teamShieldFlag;
 
       if (!req.files)
-        throw new HttpError(406, 'Not acepptable', 'Invalid multer files');
+        throw new HttpError(406, 'Not aceptable', 'Invalid multer files');
 
       // eslint-disable-next-line no-undef
       const files = req.files as { [fieldname: string]: Express.Multer.File[] };
