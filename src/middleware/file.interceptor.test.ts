@@ -3,7 +3,7 @@ import { FileInterceptor } from './file.interceptor.js';
 import multer from 'multer';
 
 jest.mock('multer');
-describe('Given...', () => {
+describe('Given Class FileInterceptor...', () => {
   // Given
   const midlewareMock = jest.fn();
   const single = jest.fn().mockReturnValue(midlewareMock);
