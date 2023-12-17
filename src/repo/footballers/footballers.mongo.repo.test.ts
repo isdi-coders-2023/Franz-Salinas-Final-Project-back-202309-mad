@@ -70,6 +70,12 @@ describe('Given FootballersMongoRepo...', () => {
       expect(result).toBe('Test');
     });
 
+    test('Then it should execute search...', async () => {
+      const result = await repo.search({ key: 'age', value: '36' });
+      expect(exec).toHaveBeenCalled();
+      expect(result).toBe('Test');
+    });
+
     test('should delete the footballer and remove it from the author footballers array', async () => {
       const id = 'testId';
 
@@ -92,6 +98,12 @@ describe('Given FootballersMongoRepo...', () => {
     const exec = jest.fn().mockResolvedValue(null);
 
     beforeEach(() => {
+      FootballerModel.find = jest.fn().mockReturnValue({
+        populate: jest.fn().mockReturnValue({
+          exec,
+        }),
+      });
+
       FootballerModel.findById = jest.fn().mockReturnValue({
         populate: jest.fn().mockReturnValue({
           exec,
@@ -106,15 +118,22 @@ describe('Given FootballersMongoRepo...', () => {
       FootballerModel.findByIdAndDelete = jest.fn().mockReturnValue({
         exec,
       });
+
       repo = new FootballersMongoRepo();
     });
 
-    test('Then it should execute getById with and erros...', async () => {
+    test('Then it should execute getById with and error...', async () => {
       expect(repo.getById('')).rejects.toThrow();
     });
 
-    test('Then it should execute updater with and erros...', async () => {
+    test('Then it should execute updater with and error...', async () => {
       expect(repo.update('', { name: 'luis' })).rejects.toThrow();
     });
+
+    //  For the Canarian  test('Then it should execute search with and error...', async () => {
+
+    //     expect(repo.search({ key: 'position', value: 's' })).rejects.toThrow();
+
+    //   });
   });
 });
