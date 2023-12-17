@@ -17,29 +17,30 @@ const interceptor = new AuthInterceptor();
 const fileInterceptor = new FileInterceptor();
 
 footballersRouter.get('/', controller.getAll.bind(controller));
-
+footballersRouter.get('/search', controller.search.bind(controller));
 footballersRouter.get('/:id', controller.getById.bind(controller));
 footballersRouter.post(
   '/',
   interceptor.authorization.bind(interceptor),
-  interceptor.adminValidationForRoleOfTheUser.bind(interceptor),
-  fileInterceptor.singleFileStore('imageFootballer').bind(fileInterceptor),
+
+  /* Tem  interceptor.adminValidationForRoleOfTheUser.bind(interceptor), */
+  fileInterceptor.multiFileStore().bind(fileInterceptor),
   controller.create.bind(controller)
 );
 footballersRouter.patch(
   '/:id',
   interceptor.authorization.bind(interceptor),
-  interceptor.adminValidationForRoleOfTheUser.bind(interceptor),
-  fileInterceptor.singleFileStore('imageFootballer').bind(fileInterceptor),
+  interceptor.authentificationFootballers.bind(interceptor),
+  /* Tem interceptor.adminValidationForRoleOfTheUser.bind(interceptor), */
+  fileInterceptor.multiFileStore().bind(fileInterceptor),
 
   controller.update.bind(controller)
 );
 footballersRouter.delete(
   '/:id',
   interceptor.authorization.bind(interceptor),
-  interceptor.adminValidationForRoleOfTheUser.bind(interceptor),
+  interceptor.authentificationFootballers.bind(interceptor),
+  /* TEm  interceptor.adminValidationForRoleOfTheUser.bind(interceptor), */
 
   controller.delete.bind(controller)
 );
-
-/* Tem footballersRouter.get('/search', controller.search.bind(controller)); */

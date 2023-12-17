@@ -16,7 +16,7 @@ export class UserController extends Controller<User> {
     debug('Instatiated');
   }
 
-  loginWithToken(req: Request, res: Response, next: NextFunction) {
+  /* TEm loginWithToken(req: Request, res: Response, next: NextFunction) {
     try {
       const result = this.repo.getById(req.body.userId);
       res.json(result);
@@ -25,7 +25,7 @@ export class UserController extends Controller<User> {
     } catch (error) {
       next(error);
     }
-  }
+  } */
 
   async login(req: Request, res: Response, next: NextFunction) {
     try {

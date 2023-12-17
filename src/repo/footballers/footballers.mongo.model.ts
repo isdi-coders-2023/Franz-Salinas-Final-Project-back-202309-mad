@@ -4,6 +4,7 @@ import { Footballer } from '../../entities/footballers';
 const footballerSchema = new Schema<Footballer>({
   id: {
     type: String,
+    required: false,
   },
   name: { type: String, required: false },
 
@@ -72,6 +73,37 @@ const footballerSchema = new Schema<Footballer>({
     required: false,
   },
   briefStory: {
+    type: String,
+    required: false,
+  },
+
+  teamShieldFlag: {
+    publicId: String,
+    size: Number,
+    format: String,
+    url: String,
+    height: Number,
+    width: Number,
+  },
+
+  countryFlag: {
+    publicId: String,
+    size: Number,
+    format: String,
+    url: String,
+    height: Number,
+    width: Number,
+  },
+  detailsImage: {
+    publicId: String,
+    size: Number,
+    format: String,
+    url: String,
+    height: Number,
+    width: Number,
+  },
+
+  currentTeam: {
     type: String,
     required: false,
   },

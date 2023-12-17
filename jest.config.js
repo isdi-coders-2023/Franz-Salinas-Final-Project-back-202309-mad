@@ -12,5 +12,6 @@ export default {
     'src/router/user.router.ts',
     'src/router/footballer.router.ts',
     'src/controller/controller.ts',
+    'src/repo/footballers/footballers.mongo.model.ts',
   ],
 };

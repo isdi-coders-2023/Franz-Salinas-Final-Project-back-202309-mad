@@ -62,19 +62,6 @@ export class FootballersMongoRepo implements Repository<Footballer> {
     return result;
   }
 
-  /* Te async delete(id: string): Promise<void> {
-    const result = await FootballerModel.findById(id).exec();
-    if (!result) {
-      throw new HttpError(404, 'Not Found', 'Delete not possible');
-    }
-
-    await UserModel.findByIdAndUpdate(result.author, {
-      $pull: { footballers: id },
-    }).exec();
-
-    await FootballerModel.findByIdAndDelete(id).exec();
-  }
-  */
   async delete(id: string): Promise<void> {
     const footballer = (await FootballerModel.findByIdAndDelete(
       id
@@ -84,11 +71,11 @@ export class FootballersMongoRepo implements Repository<Footballer> {
     }
 
     await UserModel.findByIdAndUpdate(footballer.author, {
-      $pull: { skins: id },
+      $pull: { footballers: id },
     }).exec();
   }
 
-  /* Tem async search({
+  async search({
     key,
     value,
   }: {
@@ -102,5 +89,5 @@ export class FootballersMongoRepo implements Repository<Footballer> {
       .exec();
 
     return result;
-  } */
+  }
 }
