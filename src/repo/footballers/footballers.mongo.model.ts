@@ -4,6 +4,7 @@ import { Footballer } from '../../entities/footballers';
 const footballerSchema = new Schema<Footballer>({
   id: {
     type: String,
+    required: false,
   },
   name: { type: String, required: false },
 

@@ -88,7 +88,7 @@ export class FootballersMongoRepo implements Repository<Footballer> {
     }).exec();
   }
 
-  /* Tem async search({
+  async search({
     key,
     value,
   }: {
@@ -102,5 +102,5 @@ export class FootballersMongoRepo implements Repository<Footballer> {
       .exec();
 
     return result;
-  } */
+  }
 }

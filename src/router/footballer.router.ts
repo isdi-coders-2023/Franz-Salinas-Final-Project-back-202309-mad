@@ -17,7 +17,7 @@ const interceptor = new AuthInterceptor();
 const fileInterceptor = new FileInterceptor();
 
 footballersRouter.get('/', controller.getAll.bind(controller));
-
+footballersRouter.get('/search', controller.search.bind(controller));
 footballersRouter.get('/:id', controller.getById.bind(controller));
 footballersRouter.post(
   '/',
@@ -44,5 +44,3 @@ footballersRouter.delete(
 
   controller.delete.bind(controller)
 );
-
-/* Te footballersRouter.get('/search', controller.search.bind(controller)); */
