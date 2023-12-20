@@ -89,12 +89,6 @@ describe('Given FootballerController Class...', () => {
         url: 'https://example.com/countryFlag.jpg',
       };
 
-      /* Tem  const mockExistingItem = {
-        imageFootballer: { url: 'https://example.com/existingImage.jpg' },
-        teamShieldFlag: 'https://example.com/existingTeamShieldFlag.jpg',
-        countryFlag: 'https://example.com/existingCountryFlag.jpg',
-        detailsImage: 'https://example.com/existingDetailsImage.jpg',
-      }; */
       const mockCloudinaryService = {
         uploadImage: jest
           .fn()
@@ -230,17 +224,17 @@ describe('Given FootballerController Class...', () => {
       });
     });
 
-    /* Tem  describe('When we update a  footballer', () => {
+    describe('When we update a  footballer', () => {
       test('Then the update method should handle missing image files...', async () => {
         const mockRequest = {
           files: {
-            imageFootballer: [{ path: 'undefined' }],
+            imageFootballer: [{ path: null }],
 
-            teamShieldFlag: [{ path: 'undefined' }],
+            teamShieldFlag: [{ path: null }],
 
-            countryFlag: [{ path: 'undefined' }],
+            countryFlag: [{ path: null }],
 
-            detailsImage: [{ path: 'undefined' }],
+            detailsImage: [{ path: null }],
           },
 
           body: { userId: 'someUserId' },
@@ -261,7 +255,7 @@ describe('Given FootballerController Class...', () => {
         expect(mockResponse.json).toHaveBeenCalled();
       });
     });
-  */
+
     /* Tem describe('When we instantiate it with errors', () => {
     let mockError: Error;
     beforeEach(() => {
