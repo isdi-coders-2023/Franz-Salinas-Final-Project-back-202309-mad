@@ -49,18 +49,4 @@ export class AuthInterceptor {
       next(error);
     }
   }
-
-  /* Tem async adminValidationForRoleOfTheUser(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
-    try {
-      if (req.body.roleOfTheUser !== 'Admin')
-        throw new HttpError(403, 'Forbidden', 'Not acceptable'); // Para que solo el Admin pueda borrar.
-      next();
-    } catch (error) {
-      next(error);
-    }
-  } */
 }
