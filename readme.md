@@ -47,24 +47,21 @@ Antes de ejecutar el backend de la aplicación, asegúrese de tener instaladas l
 
 1. Clone el repositorio, instale dependencias y configure el servidor:
 
-````bash
-  git clone https://github.com/isdi-coders-2023/Franz-Salinas-Final-Project-back-202309-mad.git
-  cd franz-salinas-final-project-back-202309-mad
-  npm install
+git clone <https://github.com/isdi-coders-2023/Franz-Salinas-Final-Project-back-202309-mad.git>
+cd franz-salinas-final-project-back-202309-mad
+npm install
 
 Cree un archivo .env en el directorio raíz del proyecto.
 Configure las variables de entorno necesarias. Consulte el archivo .env.example para obtener una lista de las variables requeridas.
 Inicie el servidor:
 
-```bash
-
 npm start
 Contribución
 Si desea contribuir a este proyecto, siga estos pasos:
 
-Haga un fork del repositorio.
+### Haga un fork del repositorio.
+
 Cree una rama para su función o corrección de errores: git checkout -b feature/your-feature-name.
 Realice los cambios necesarios y realice los commits: git commit -am 'Add some feature'.
 Haga push a la rama: git push origin feature/your-feature-name.
-Envíe una solicitud de extracción al repositorio original.
-````
+Envíe una solicitud de extracción al repositorio original
